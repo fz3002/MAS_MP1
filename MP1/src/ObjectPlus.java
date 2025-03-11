@@ -1,9 +1,10 @@
 import java.io.*;
 import java.util.*;
 
-public class ObjectPlus implements Serializable {
+public class ObjectPlus implements Serializable { //Ekstensja - trwałość
+
     private static Map<Class, List> extent = new HashMap<>();
-    public static final String EXTENT_FILE_NAME = "naszsuperplik.mas";
+    public static final String EXTENT_FILE_NAME = "pokemons.pkd";
 
     public ObjectPlus() {
         addToExtent();
@@ -13,7 +14,7 @@ public class ObjectPlus implements Serializable {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(EXTENT_FILE_NAME))) {
           oos.writeObject(extent);
         } finally {
-            System.out.println("Saved extent to file");
+            System.out.println("Objects saved to file");
         }
     }
 
@@ -21,7 +22,7 @@ public class ObjectPlus implements Serializable {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(EXTENT_FILE_NAME))) {
             extent = (Map<Class, List>) ois.readObject();
         } finally {
-            System.out.println("Loaded extent from file");
+            System.out.println("Objects loaded from file");
         }
     }
 
